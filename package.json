@@ -12,6 +12,6 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "restex":"git+https://git@github.com/sunilmore690/restex.git"
+    "restex":"1.0.2"
   }
 }
