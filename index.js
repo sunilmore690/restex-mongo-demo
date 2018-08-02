@@ -19,7 +19,7 @@ let restex = new RestEx(app, {
   routesPath: path.resolve(__dirname + "/routes")
 });
 //add some data
-let UserModel = restex.models["users"];
+let UserModel = restex.model("users");
 UserModel.create(
   [
     {
