@@ -1,4 +1,8 @@
+
+let verifyToken = require('../middleware/verifytoken')
+
 module.exports = function(mongoose) {
+  
   const Schema = mongoose.Schema;
   var userSchema = new Schema({
     name: String,
@@ -17,6 +21,9 @@ module.exports = function(mongoose) {
   });
   userSchema.statics = {
     collectionName :'users',
+    routeOption:{
+      middleware:[verifyToken]
+    }
   }
   return userSchema
 };
