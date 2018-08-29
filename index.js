@@ -6,6 +6,9 @@ let app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.get('/',function(req ,res, next){
+  res.json({message:'Welcome To resetex mongodb demo app'})
+})
 let restex = new RestEx(app, {
   database: {
     provider: "mongo", //mongodb,mysql
@@ -18,7 +21,7 @@ let restex = new RestEx(app, {
   modelsPath: path.resolve(__dirname + "/models"),
   routesPath: path.resolve(__dirname + "/routes")
 });
-//add some data
+//adding  some sample users
 let UserModel = restex.model("users");
 UserModel.create(
   [
