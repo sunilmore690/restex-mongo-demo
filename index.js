@@ -14,7 +14,7 @@ let restex = new RestEx(app, {
     provider: "mongo", //mongodb,mysql
     conn: {
       // mongooseConnection: mongoose.connection
-      uri: "mongodb://localhost:27017/restexdemo"
+      uri: process.env.MONGODB_URI || "mongodb://localhost:27017/restexdemo"
     }
   },
   controllersPath: path.resolve(__dirname + "/controllers"),
