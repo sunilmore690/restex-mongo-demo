@@ -63,3 +63,6 @@ app.use(function(err, req, res, next) {
 app.listen(3000, function() {
   console.log("restex-mongod-demo listening on 3000");
 });
+process.on('unhandledRejection',function(err){
+  console.log('err',err)
+})
