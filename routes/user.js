@@ -6,5 +6,5 @@ module.exports = function(router) {
       authenticate >> authenticate method exported from user
   */
   router.post("/authenticate", "user#authenticate");
-  router.get("/usercount", "user#getCount");
+  router.get("/usercount", "user#getCount",{middleware:['auth']});
 };

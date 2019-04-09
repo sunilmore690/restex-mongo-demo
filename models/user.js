@@ -16,7 +16,10 @@ module.exports = function(mongoose) {
     }
   });
   userSchema.statics = {
-    collectionName :'users',
-  }
-  return userSchema
+    collectionName: "users",
+    routeOption: {
+      middleware: ["auth"]
+    }
+  };
+  return userSchema;
 };

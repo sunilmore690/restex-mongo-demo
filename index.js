@@ -19,7 +19,8 @@ let restex = new RestEx(app, {
   },
   controllersPath: path.resolve(__dirname + "/controllers"),
   modelsPath: path.resolve(__dirname + "/models"),
-  routesPath: path.resolve(__dirname + "/routes")
+  routesPath: path.resolve(__dirname + "/routes"),
+  middlewaresPath: path.resolve(__dirname + "/middlewares")
 });
 //adding  some sample users
 let UserModel = restex.model("users");
@@ -60,6 +61,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
-app.listen(3000, function() {
+app.listen(3002, function() {
   console.log("restex-mongod-demo listening on 3000");
 });
