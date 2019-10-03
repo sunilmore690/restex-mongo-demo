@@ -20,7 +20,7 @@ let restex = new RestEx(app, {
   controllersPath: path.resolve(__dirname + "/controllers"),
   modelsPath: path.resolve(__dirname + "/models"),
   routesPath: path.resolve(__dirname + "/routes"),
-  middlewaresPath: path.resolve(__dirname + "/middlewares")
+  middlewaresPath: path.resolve(__dirname + "/middleware.js")
 });
 //adding  some sample users
 let UserModel = restex.model("users");

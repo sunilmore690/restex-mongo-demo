@@ -18,7 +18,7 @@ module.exports = function(mongoose) {
   userSchema.statics = {
     collectionName: "users",
     routeOption: {
-      middleware: ["auth"]
+      middleware: ["auth"]//where auth is function which export in middleware.js
     }
   };
   return userSchema;
