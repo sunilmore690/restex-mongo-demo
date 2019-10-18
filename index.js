@@ -6,9 +6,39 @@ let app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.get('/',function(req ,res, next){
-  res.json({message:'Welcome To resetex mongodb demo app'})
-})
+app.get("/", function(req, res, next) {
+  res.json({ message: "Welcome To resetex mongodb demo app" });
+});
+app.get("/mysql", (req, res, next) => {
+  console.log("coming");
+  var mysql = require("mysql");
+  var connection = mysql.createConnection({
+    host: "live-mysql-backup.cjvtcm0fh5rm.us-east-1.rds.amazonaws.com",
+    user: "optuser",
+    password: "OptPassWord2016",
+    database: "opt_live"
+  });
+
+  connection.connect(function(err) {
+    if (err) {
+      console.error("error connecting: " + err.stack);
+      return next(err);
+    }
+
+    console.log("connected as id " + connection.threadId);
+  });
+
+  connection.query("SELECT 1 + 1 AS solution", function(
+    error,
+    results,
+    fields
+  ) {
+    if (error) throw error;
+    console.log("The solution is: ", results[0].solution);
+    res.json({ solution: results[0].solution });
+    connection.end();
+  });
+});
 let restex = new RestEx(app, {
   database: {
     provider: "mongo", //mongodb,mysql
@@ -25,25 +55,23 @@ let restex = new RestEx(app, {
 });
 //adding  some sample users
 let UserModel = restex.model("users");
-UserModel.create(
-  [
-    {
-      email: "scott@tiger.com",
-      name: "Scott Tiger",
-      password:'sam'
-    },
-    {
-      email: "larry@oracle.com",
-      name: "Larry Ellison",
-      password:'sam'
-    },
-    {
-      email: "larry@google.com",
-      name: "Larry  Page",
-      password:'sam'
-    }
-  ]
-);
+UserModel.create([
+  {
+    email: "scott@tiger.com",
+    name: "Scott Tiger",
+    password: "sam"
+  },
+  {
+    email: "larry@oracle.com",
+    name: "Larry Ellison",
+    password: "sam"
+  },
+  {
+    email: "larry@google.com",
+    name: "Larry  Page",
+    password: "sam"
+  }
+]);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,6 +90,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
+
 app.listen(8081, function() {
   console.log("restex-mongod-demo listening on 8081");
 });
