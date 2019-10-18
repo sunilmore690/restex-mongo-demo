@@ -9,14 +9,43 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", function(req, res, next) {
   res.json({ message: "Welcome To resetex mongodb demo app" });
 });
+app.get("/mysql", (req, res, next) => {
+  console.log("coming");
+  var mysql = require("mysql");
+  var connection = mysql.createConnection({
+    host: "live-mysql-backup.cjvtcm0fh5rm.us-east-1.rds.amazonaws.com",
+    user: "optuser",
+    password: "OptPassWord2016",
+    database: "opt_live"
+  });
 
+  connection.connect(function(err) {
+    if (err) {
+      console.error("error connecting: " + err.stack);
+      return next(err);
+    }
+
+    console.log("connected as id " + connection.threadId);
+  });
+
+  connection.query("SELECT 1 + 1 AS solution", function(
+    error,
+    results,
+    fields
+  ) {
+    if (error) throw error;
+    console.log("The solution is: ", results[0].solution);
+    res.json({ solution: results[0].solution });
+    connection.end();
+  });
+});
 let restex = new RestEx(app, {
   database: {
     provider: "mongo", //mongodb,mysql
     conn: {
       // mongooseConnection: mongoose.connection
       uri:
-        "mongodb://localhost:27017/test"
+        "mongodb://opt:ynttb511@opt-mongo-stage.optcentral.com:27017/test?authSource=admin"
     }
   }
   // controllersPath: path.resolve(__dirname + "/controllers"), //
