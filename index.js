@@ -62,6 +62,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
-app.listen(8080, function() {
-  console.log("restex-mongod-demo listening on 8080");
+app.listen(3000, function() {
+  console.log("restex-mongod-demo listening on 3000");
 });
