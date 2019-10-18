@@ -14,13 +14,14 @@ let restex = new RestEx(app, {
     provider: "mongo", //mongodb,mysql
     conn: {
       // mongooseConnection: mongoose.connection
-      uri: "mongodb://localhost:27017/restexdemo"
+      uri:
+        "mongodb://opt:ynttb511@opt-mongo-stage.optcentral.com/test?authSource=admin"
     }
-  },
-  controllersPath: path.resolve(__dirname + "/controllers"),
-  modelsPath: path.resolve(__dirname + "/models"),
-  routesPath: path.resolve(__dirname + "/routes"),
-  middlewaresPath: path.resolve(__dirname + "/middleware.js")
+  }
+  // controllersPath: path.resolve(__dirname + "/controllers"), //
+  // modelsPath: path.resolve(__dirname + "/models"),
+  // routesPath: path.resolve(__dirname + "/routes"),
+  // middlewaresPath: path.resolve(__dirname + "/middleware.js")
 });
 //adding  some sample users
 let UserModel = restex.model("users");
@@ -61,6 +62,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
-app.listen(3002, function() {
-  console.log("restex-mongod-demo listening on 3000");
+app.listen(8080, function() {
+  console.log("restex-mongod-demo listening on 8080");
 });
