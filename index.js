@@ -15,7 +15,7 @@ let restex = new RestEx(app, {
     conn: {
       // mongooseConnection: mongoose.connection
       uri:
-        "mongodb://opt:ynttb511@opt-mongo-stage.optcentral.com/test?authSource=admin"
+        "mongodb://opt:ynttb511@opt-mongo-stage.optcentral.com:27017/test?authSource=admin"
     }
   }
   // controllersPath: path.resolve(__dirname + "/controllers"), //
@@ -62,6 +62,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send(err);
 });
-app.listen(3000, function() {
-  console.log("restex-mongod-demo listening on 3000");
+app.listen(8081, function() {
+  console.log("restex-mongod-demo listening on 8081");
 });
