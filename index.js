@@ -13,7 +13,7 @@ app.get("/mysql", (req, res, next) => {
   console.log("coming");
   var mysql = require("mysql");
   var connection = mysql.createConnection({
-    host: "live-mysql-backup.cjvtcm0fh5rm.us-east-1.rds.amazonaws.com",
+    host: "optdb-live.optcentral.com",
     user: "optuser",
     password: "OptPassWord2016",
     database: "opt_live"
