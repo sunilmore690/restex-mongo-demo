@@ -45,7 +45,7 @@ let restex = new RestEx(app, {
     conn: {
       // mongooseConnection: mongoose.connection
       uri:
-        "mongodb://opt:ynttb511@opt-mongo-stage.optcentral.com:27017/test?authSource=admin"
+        "mongo mongodb://opt:ynttb511@opt-mongo-qa.optcentral.com:27017/test?authSource=admin"
     }
   }
   // controllersPath: path.resolve(__dirname + "/controllers"), //
